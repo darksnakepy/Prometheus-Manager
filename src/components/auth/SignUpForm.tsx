@@ -24,7 +24,7 @@ const SignUpForm = () =>{
     const [error, setError] = useState("")
 
     const router = useRouter();
-
+    {/* to modify */}
     const submit = async() =>{
         const [registerReq, setRegisterReq] = useState<RegisterRequest>({ email: "", masterPass: "" });
  
@@ -45,7 +45,7 @@ const SignUpForm = () =>{
                     };
                     setRegisterReq(regreq)
                 }
-                const loginResponse = await postData("/api/register", registerReq)
+                const loginResponse = await postData("/api/auth/register", registerReq)
                 setCookies("token", loginResponse.sessionId, { path: "/" });
                 await router.replace("/");
             }

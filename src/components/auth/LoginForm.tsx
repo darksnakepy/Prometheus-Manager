@@ -38,7 +38,7 @@ const LoginForm = ({/*visible}: UserProps*/}) =>{
         else{
             setError("")
         }
-        const loginResponse = await postData("/api/login", loginReq)
+        const loginResponse = await postData("/api/auth/login", loginReq)
         setCookies("token", loginResponse.sessionId, { path: "/" });
         await router.replace("/");
         
