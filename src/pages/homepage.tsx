@@ -1,10 +1,10 @@
 import { NextPage } from "next";
-import SignUpForm from "~/components/auth/SignUpForm";
+import DataManagementWindow from "~/components/DataManagement/DataManagMainWindow";
 
 const Signup : NextPage = () =>{
     return(
         <>
-            <SignUpForm />
+            <DataManagementWindow />
         </>
     )
 }

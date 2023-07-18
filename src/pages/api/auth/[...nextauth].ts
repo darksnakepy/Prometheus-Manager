@@ -1,4 +1,6 @@
 import NextAuth from "next-auth";
-import { authOptions } from "~/server/auth";
+import { AuthOptions } from "next-auth";
 
-export default NextAuth(authOptions);
+export const auth : AuthOptions ={
+
+}
