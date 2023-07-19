@@ -12,7 +12,9 @@ import Check from "~/../public/SideBarIcons/Check.svg"
 import Gen from "~/../public/SideBarIcons/Gen.svg"
 
 import Link from "next/link"
-
+import { useState } from "react"
+import AddItem from "../DataManagement/AddData"
+import PassGen from "../DataManagement/PassGen"
 
 /*interface SideBarProps{
     /*onAllItemsClick: () => void
@@ -25,18 +27,39 @@ import Link from "next/link"
 
 
 const SideBar = () =>{
+
+    const [activeComponent, setActiveComponent] = useState("")
+
+    const handleClick = (componentName: any) => {
+        setActiveComponent(componentName)
+    }
+
+    const renderComponent = () =>{
+        switch(activeComponent){
+            case "AllItems":
+                return <AddItem />
+            case "Passwords":
+                return <PassGen/>
+            case "":
+                return
+            default:
+                return null;
+        }
+    }
+
+
     return(
         <div className="w-1/6 h-screen bg-[#181a1b]">
-            <div className="flex flex-col gap-2 text-white text-[15px]">
+            <div className="flex flex-col gap-2 text-white text-[15px] ml-2">
                 <div className="mt-10">
-                    <SideBarItems title="All items" icon={AllItemsLogo} onClick={() =>{}}/>
-                    <SideBarItems title="Passwords" icon={Password} onClick={() => {}}/>
-                    <SideBarItems title="Notes" icon={Document} onClick={() => {}}/>
-                    <SideBarItems title="Credit Cards" icon={CreditCard} onClick={() => {}}/>
-                    <SideBarItems title="Trash bin" icon={Trash} onClick={() => {}}/>
+                    <SideBarItems title="All items" icon={AllItemsLogo} onClick={() => handleClick("AllItems")}/>
+                    <SideBarItems title="Passwords" icon={Password} onClick={() => handleClick("Passwords")}/>
+                    <SideBarItems title="Notes" icon={Document} onClick={() => handleClick("Notes")}/>
+                    <SideBarItems title="Credit Cards" icon={CreditCard} onClick={() => handleClick("CreditCards")}/>
+                    <SideBarItems title="Trash bin" icon={Trash} onClick={() => handleClick("Trash")}/>
                 </div>
             </div>
-            <div className="text-white text-[15px] mt-[15%]"> {/* tools container */}
+            <div className="text-white text-[15px] mt-[15%] ml-2"> {/* tools container */}
                 <SideBarItems title="Password Generator" icon={Gen} onClick={() =>{}}/>
                 <SideBarItems title="Password Health Check" icon={Check} onClick={() =>{}}/>
             </div>
@@ -60,6 +83,7 @@ const SideBar = () =>{
             </div>
         </div>
     ) 
+
 }
 
 export default SideBar
