@@ -19,25 +19,36 @@ const SignUpForm = () =>{
 
     const router = useRouter();
 
-    const submit = async() =>{      
-        if(masterPass === repeatPass){  
-            setError("")
-            if(email !== "" && masterPass !== ""){
-                const hashedPass = await bycryptjs.hash(masterPass, 12)
-                const regreq = {
-                    email: email,
-                    masterPass: hashedPass,
-                    phoneNumber: phoneNumber
-                };
-                const registerResponse = await postData("/api/register", regreq)
-                //setCookies("token", registerResponse.sessionId, { path: "/" });
-                await router.replace("/")
-            }else{
-                setError("Must complete all the forms")
+    const submit = async () => {
+        if (masterPass === repeatPass && isValidPhoneNumber(phoneNumber)) {
+          setError("");
+      
+          if (email !== "" && masterPass !== "") {
+            const hashedPass = await bycryptjs.hash(masterPass, 12);
+      
+            const regreq = {
+              email: email,
+              masterPass: hashedPass,
+              phoneNumber: phoneNumber,
+            };
+      
+            try {
+              const registerResponse = await postData("/api/register", regreq);
+              // setCookies("token", registerResponse.sessionId, { path: "/" });
+              await router.replace("/");
+            } catch (error) {
             }
-        }else{
-            setError("Passwords do not match.")
+          } else {
+            setError("Must complete all the forms");
+          }
+        } else {
+          setError(masterPass !== repeatPass ? "Passwords do not match" : "Invalid phone number.");
         }
+      };
+
+    function isValidPhoneNumber(phone: string): boolean {
+        const phoneRegex = /^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9][0-9]{2})\s*\)|([2-9][0-9]{2}))\s*(?:[.-]\s*)?)?([2-9][0-9]{2})\s*(?:[.-]\s*)?([0-9]{4})$/;
+        return phoneRegex.test(phone);
     }
         
     return(
