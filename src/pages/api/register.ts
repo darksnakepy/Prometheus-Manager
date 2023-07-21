@@ -29,7 +29,7 @@ export default async function handler(request: NextApiRequest, response: NextApi
                 }
             })
             console.log(response)
-        
+            return response.status(200).json({sessionId: newUser.sessionId})
         }else return response.status(404).end();
 
     } else return response.status(405).end();

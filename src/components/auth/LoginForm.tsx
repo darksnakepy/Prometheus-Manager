@@ -24,7 +24,8 @@ const LoginForm = () =>{
                     email: email,
                     masterPass: masterPass,
                 };
-                const loginResponse = await postData("/api/login", regreq) 
+                const loginResponse = await postData("/api/login", regreq);
+                setCookies("token", loginResponse.sessionId, { path: "/" });
                 await router.replace("/")
             }else{
                 setError("Must complete all the forms")

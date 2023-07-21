@@ -23,7 +23,7 @@ export default async function handler(request: NextApiRequest, response: NextApi
         if(user){
             const hashedPass = await bycryptjs.compare(req.masterPass, user.masterPass)
             if(hashedPass){
-                return response.status(200).json({sessionId: ""}) // fetch user's session id
+                return response.status(200).json({sessionId: user.sessionId}) // fetch user's session id
             }else{
                 return response.status(401).json({ error: "Invalid password" })
             }

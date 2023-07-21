@@ -8,9 +8,9 @@ const PassGen = () =>{
 
     const [password, setPassword] = useState("")
     const [length, setLength] = useState(6)
-    const [digits, setDigits] = useState(true)
-    const [characters, setCharacters] = useState(true)
-    const [capitalLetters, setCapitalLetters] = useState(true)
+    const [digits, setDigits] = useState(false)
+    const [characters, setCharacters] = useState(false)
+    const [capitalLetters, setCapitalLetters] = useState(false)
     const [securityStatus, setSecurityStatus] = useState("")
     const [isCopied, setIsCopied] = useState(false)
 
@@ -120,14 +120,9 @@ const PassGen = () =>{
                     <div className="flex flex-col justfify-center ml-[73%]">
                         <label htmlFor="default-range" className="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-white" >{length}</label>
                         <input id="default-range" type="range" min={6} max={32} value={length} className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" onChange={handleSliderChange}></input>    
-                        {/*<input type="checkbox" onChange={handleCapital}></input>
-                        <input type="checkbox" onChange={handleDigitsChange}></input>
-                        <input type="checkbox" onChange={handleCharactersChange}></input>
-                        */}
                         <ToggleSwitch onChange={handleCapital}/>
                         <ToggleSwitch onChange={handleDigitsChange} />
                         <ToggleSwitch onChange={handleCharactersChange} />
-                
                     </div>
                     
                 </div>

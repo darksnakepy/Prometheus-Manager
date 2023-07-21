@@ -34,7 +34,7 @@ const SignUpForm = () =>{
       
             try {
               const registerResponse = await postData("/api/register", regreq);
-              // setCookies("token", registerResponse.sessionId, { path: "/" });
+              setCookies("token", registerResponse.sessionId, { path: "/" });
               await router.replace("/");
             } catch (error) {
             }
