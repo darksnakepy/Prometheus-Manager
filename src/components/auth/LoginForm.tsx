@@ -22,7 +22,7 @@ const LoginForm = () =>{
                 const hashedPass = await bcryptjs.hash(masterPass, 12)
                 const regreq = {
                     email: email,
-                    masterPass: hashedPass,
+                    masterPass: masterPass,
                 };
                 const loginResponse = await postData("/api/login", regreq) 
                 await router.replace("/")
