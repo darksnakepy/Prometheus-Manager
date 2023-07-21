@@ -19,7 +19,7 @@ const LoginForm = () =>{
     const submit = async() =>{      
             setError("")
             if(email !== "" && masterPass !== ""){
-                const hashedPass = bcryptjs.hash(masterPass, 12)
+                const hashedPass = await bcryptjs.hash(masterPass, 12)
                 const regreq = {
                     email: email,
                     masterPass: hashedPass,
