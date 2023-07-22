@@ -25,7 +25,7 @@ const NavBar = ({onAccountClick, userLogged, user} : NavBarProps) =>{
                 </Link>
                 <div className="flex-row ml-auto gap-8 hidden lg:flex">
                     <div className="flex items-center gap-8 text-white">
-                        {userLogged ? <Link href={"/l"} className="hover:text-gray-300">{user}</Link> : <Link href={"/login"} className="hover:text-gray-300">Login</Link>}
+                        {userLogged ? <Link href={"/"} className="hover:text-gray-300">{user}</Link> : <Link href={"/login"} className="hover:text-gray-300">Login</Link>}
                         <Link href={""} className="hover:text-gray-300">Features</Link>
                         <Link href={""} className="hover:text-gray-300">Support</Link>
                         <Link href={"/dashboard"} className="hover:text-gray-300">Dashboard</Link>

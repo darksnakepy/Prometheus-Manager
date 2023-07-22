@@ -9,7 +9,7 @@ export default function Home() {
 
   return (
     <>
-      <NavBar onAccountClick={async () =>{
+      <NavBar userLogged={true} onAccountClick={async () =>{
         await router.push("/register")
       }}/>
         <MainPage />

@@ -6,8 +6,6 @@ const DataManagementWindow = () => {
     return(
         <>
             <SideBar />
-            {/*<AddItem /> */}
-            <PassGen />
         </>
     )
 

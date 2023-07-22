@@ -40,11 +40,13 @@ const SideBar = () =>{
             case "AllItems":
                 return <AddItem />
             case "Passwords":
-                return <PassGen/>
+                return
             case "Notes":
                 return
             case "Credit Cards":
                 return
+            case "pswgen":
+                return <PassGen/>
             default:
                 return null;
         }
@@ -52,23 +54,26 @@ const SideBar = () =>{
 
 
     return(
-        <div className="w-1/6 h-screen bg-[#181a1b]">
-            <div className="flex flex-col gap-2 text-white text-[15px] ml-2">
-                <div className="mt-10">
-                    <SideBarItems title="All items" icon={AllItemsLogo} onClick={() => handleClick("AllItems")} isActive={activeComponent === "AllItems"}/>
-                    <SideBarItems title="Passwords" icon={Password} onClick={() => handleClick("Passwords")} isActive={activeComponent === "Passwords"}/>
-                    <SideBarItems title="Notes" icon={Document} onClick={() => handleClick("Notes")} isActive={activeComponent === "Notes"}/>
-                    <SideBarItems title="Credit Cards" icon={CreditCard} onClick={() => handleClick("CreditCards")} isActive={activeComponent === "CreditCards"}/>
-                    <SideBarItems title="Trash bin" icon={Trash} onClick={() => handleClick("Trash")} isActive={activeComponent === "Trash"}/>
+        <div>
+            {renderComponent()}
+            <div className="w-1/6 h-screen bg-[#181a1b]"> {/*side bar */}
+                <div className="flex flex-col gap-2 text-white text-[15px] ml-2">
+                    <div className="mt-10">
+                        <SideBarItems title="All items" icon={AllItemsLogo} onClick={() => handleClick("AllItems")} isActive={activeComponent === "AllItems"}/>
+                        <SideBarItems title="Passwords" icon={Password} onClick={() => handleClick("Passwords")} isActive={activeComponent === "Passwords"}/>
+                        <SideBarItems title="Notes" icon={Document} onClick={() => handleClick("Notes")} isActive={activeComponent === "Notes"}/>
+                        <SideBarItems title="Credit Cards" icon={CreditCard} onClick={() => handleClick("CreditCards")} isActive={activeComponent === "CreditCards"}/>
+                        <SideBarItems title="Trash bin" icon={Trash} onClick={() => handleClick("Trash")} isActive={activeComponent === "Trash"}/>
+                    </div>
                 </div>
-            </div>
-            <div className="text-white text-[15px] mt-[15%] ml-2"> {/* tools container */}
-                <SideBarItems title="Password Generator" icon={Gen} onClick={() =>handleClick("pswgen")} isActive={activeComponent === "pswgen"}/>
-                <SideBarItems title="Password Health Check" icon={Check} onClick={() =>handleClick("pswhealthcheck")} isActive={activeComponent === "pswhealthcheck"}/>
-            </div>
-            <div className="fixed bottom-2 left-0 flex flex-row ml-5">
-                <Link href="/user/profile"> <Image alt="logo" width="30" height="30" src={User} onClick={() => {}}/></Link>
-                <Link href="/user/settings"> <Image alt="logo" width="30" height="30" src={Settings} onClick={() => {}}/></Link>
+                <div className="text-white text-[15px] mt-[15%] ml-2"> {/* tools container */}
+                    <SideBarItems title="Password Generator" icon={Gen} onClick={() =>handleClick("pswgen")} isActive={activeComponent === "pswgen"}/>
+                    <SideBarItems title="Password Health Check" icon={Check} onClick={() =>handleClick("pswhealthcheck")} isActive={activeComponent === "pswhealthcheck"}/>
+                </div>
+                <div className="fixed bottom-2 left-0 flex flex-row ml-5">
+                    <Link href="/user/profile"> <Image alt="logo" width="30" height="30" src={User} onClick={() => {}}/></Link>
+                    <Link href="/user/settings"> <Image alt="logo" width="30" height="30" src={Settings} onClick={() => {}}/></Link>
+                </div>
             </div>
         </div>
     ) 
