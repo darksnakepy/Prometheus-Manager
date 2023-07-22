@@ -67,22 +67,8 @@ const SideBar = () =>{
                 <SideBarItems title="Password Health Check" icon={Check} onClick={() =>handleClick("pswhealthcheck")} isActive={activeComponent === "pswhealthcheck"}/>
             </div>
             <div className="fixed bottom-2 left-0 flex flex-row ml-5">
-                <Link href="/user/profile"> <Image
-                        alt="logo"
-                        width="30"
-                        height="30"
-                        src={User}
-                        onClick={() => {}}
-                    />
-                </Link>
-                <Link href="/user/settings"> <Image
-                        alt="logo"
-                        width="30"
-                        height="30"
-                        src={Settings}
-                        onClick={() => {}}
-                    />
-                </Link>
+                <Link href="/user/profile"> <Image alt="logo" width="30" height="30" src={User} onClick={() => {}}/></Link>
+                <Link href="/user/settings"> <Image alt="logo" width="30" height="30" src={Settings} onClick={() => {}}/></Link>
             </div>
         </div>
     ) 
