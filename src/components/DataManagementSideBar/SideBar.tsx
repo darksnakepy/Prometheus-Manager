@@ -15,6 +15,7 @@ import Link from "next/link"
 import { useState } from "react"
 import AddItem from "../DataManagement/AddData"
 import PassGen from "../DataManagement/PassGen"
+import { isAscii } from "buffer"
 
 /*interface SideBarProps{
     /*onAllItemsClick: () => void
@@ -30,7 +31,7 @@ const SideBar = () =>{
 
     const [activeComponent, setActiveComponent] = useState("")
 
-    const handleClick = (componentName: any) => {
+    const handleClick = (componentName: string) => {
         setActiveComponent(componentName)
     }
 
@@ -40,7 +41,9 @@ const SideBar = () =>{
                 return <AddItem />
             case "Passwords":
                 return <PassGen/>
-            case "":
+            case "Notes":
+                return
+            case "Credit Cards":
                 return
             default:
                 return null;
@@ -52,16 +55,16 @@ const SideBar = () =>{
         <div className="w-1/6 h-screen bg-[#181a1b]">
             <div className="flex flex-col gap-2 text-white text-[15px] ml-2">
                 <div className="mt-10">
-                    <SideBarItems title="All items" icon={AllItemsLogo} onClick={() => handleClick("AllItems")}/>
-                    <SideBarItems title="Passwords" icon={Password} onClick={() => handleClick("Passwords")}/>
-                    <SideBarItems title="Notes" icon={Document} onClick={() => handleClick("Notes")}/>
-                    <SideBarItems title="Credit Cards" icon={CreditCard} onClick={() => handleClick("CreditCards")}/>
-                    <SideBarItems title="Trash bin" icon={Trash} onClick={() => handleClick("Trash")}/>
+                    <SideBarItems title="All items" icon={AllItemsLogo} onClick={() => handleClick("AllItems")} isActive={activeComponent === "AllItems"}/>
+                    <SideBarItems title="Passwords" icon={Password} onClick={() => handleClick("Passwords")} isActive={activeComponent === "Passwords"}/>
+                    <SideBarItems title="Notes" icon={Document} onClick={() => handleClick("Notes")} isActive={activeComponent === "Notes"}/>
+                    <SideBarItems title="Credit Cards" icon={CreditCard} onClick={() => handleClick("CreditCards")} isActive={activeComponent === "CreditCards"}/>
+                    <SideBarItems title="Trash bin" icon={Trash} onClick={() => handleClick("Trash")} isActive={activeComponent === "Trash"}/>
                 </div>
             </div>
             <div className="text-white text-[15px] mt-[15%] ml-2"> {/* tools container */}
-                <SideBarItems title="Password Generator" icon={Gen} onClick={() =>{}}/>
-                <SideBarItems title="Password Health Check" icon={Check} onClick={() =>{}}/>
+                <SideBarItems title="Password Generator" icon={Gen} onClick={() =>handleClick("pswgen")} isActive={activeComponent === "pswgen"}/>
+                <SideBarItems title="Password Health Check" icon={Check} onClick={() =>handleClick("pswhealthcheck")} isActive={activeComponent === "pswhealthcheck"}/>
             </div>
             <div className="fixed bottom-2 left-0 flex flex-row ml-5">
                 <Link href="/user/profile"> <Image

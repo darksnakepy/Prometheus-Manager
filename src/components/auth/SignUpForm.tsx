@@ -46,9 +46,10 @@ const SignUpForm = () =>{
         }
       };
 
-    function isValidPhoneNumber(phone: string): boolean {
+    function isValidPhoneNumber(phone: string): boolean{
         const phoneRegex = /^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9][0-9]{2})\s*\)|([2-9][0-9]{2}))\s*(?:[.-]\s*)?)?([2-9][0-9]{2})\s*(?:[.-]\s*)?([0-9]{4})$/;
         return phoneRegex.test(phone);
+  
     }
         
     return(
@@ -65,7 +66,7 @@ const SignUpForm = () =>{
                     <div className="text-white mt-3 text-[15px]">
                         Already a member? <Link className="hover:underline" href={"/login"}>Log in</Link>
                     </div>
-                    <p>{error}</p>
+                    <p className="text-[#582121]">{error}</p>
                 </div>
             </div>
         </div>
