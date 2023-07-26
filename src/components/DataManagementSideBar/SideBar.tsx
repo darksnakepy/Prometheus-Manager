@@ -16,6 +16,7 @@ import { useState } from "react"
 import AddItem from "../DataManagement/AddData"
 import PassGen from "../DataManagement/PassGen"
 import { isAscii } from "buffer"
+import DisplayData from "../DataManagement/DisplayData"
 
 /*interface SideBarProps{
     /*onAllItemsClick: () => void
@@ -29,7 +30,7 @@ import { isAscii } from "buffer"
 
 const SideBar = () =>{
 
-    const [activeComponent, setActiveComponent] = useState("")
+    const [activeComponent, setActiveComponent] = useState("AllItems")
 
     const handleClick = (componentName: string) => {
         setActiveComponent(componentName)
@@ -38,9 +39,9 @@ const SideBar = () =>{
     const renderComponent = () =>{
         switch(activeComponent){
             case "AllItems":
-                return <AddItem />
+                return <DisplayData />
             case "Passwords":
-                return
+                return <AddItem />
             case "Notes":
                 return
             case "Credit Cards":

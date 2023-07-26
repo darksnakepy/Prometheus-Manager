@@ -39,7 +39,7 @@ const AddItem = () => {
           </div>
           <div className="flex flex-col w-[40%]">
             <label className="text-white text-sm mb-1" htmlFor="password">Password</label>
-            <input type="password" id="password" onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} className="outline-none pl-3 bg-[#181a1b] h-12 mb-[5%] rounded-[8px] placeholder-white-[0.6] placeholder-14px text-14px text-white" placeholder="" />
+            <input type="text" id="password" onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} className="outline-none pl-3 bg-[#181a1b] h-12 mb-[5%] rounded-[8px] placeholder-white-[0.6] placeholder-14px text-14px text-white" placeholder="" />
           </div>
           <div className="flex flex-col w-[40%]">
             <label className="text-white text-sm mb-1" htmlFor="notes">Notes</label>
@@ -47,7 +47,7 @@ const AddItem = () => {
           </div>
           <div className="flex w-[40%] justify-between mt-5 mr-9.5">
             <button onClick={submitInfo} className="flex-none w-[27%] h-10 mt-5 text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-[#1545af] dark:hover:bg-blue-800 focus:outline-none">Add Data</button>
-            <button onClick={() => {router.push("/submitInfo")}}className="flex-none w-[27%] h-10 mt-5 mb-[20%] text-[#444444] bg-[#ffffff] hover:bg-[#ffffff] font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-[#ffffff] dark:hover:bg-[#ffffff] focus:outline-0">Cancel</button>
+            <button onClick={() => {}}className="flex-none w-[27%] h-10 mt-5 mb-[20%] text-[#444444] bg-[#ffffff] hover:bg-[#ffffff] font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-[#ffffff] dark:hover:bg-[#ffffff] focus:outline-0">Cancel</button>
           </div>
         </div>
       </div>
