@@ -10,7 +10,7 @@ interface ItemListProps {
 const ItemList = ({items} :ItemListProps) => {
     return(
         <>
-            <ListElement date="fottiti" email="fdadw" icon="nicolo" link="ffps" type="fes"></ListElement>
+            <ListElement date="" email="fdadw" icon="nicolo" link="ffps" type="fes"></ListElement>
         </>
     )
 }
