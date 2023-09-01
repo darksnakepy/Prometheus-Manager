@@ -10,6 +10,7 @@ interface DataRequest {
     userData: string,
     password: string,
     notes: string
+    sessionId: string
 }
 
 export default async function handler(request: NextApiRequest, response: NextApiResponse<DataResponse>){

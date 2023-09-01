@@ -18,6 +18,10 @@ const config = {
     locales: ["en"],
     defaultLocale: "en",
   },
+  images: {
+    domains: [], // Ensure this is an empty array to allow all hosts
+    remotePatterns: [], // Use an empty array to allow all hosts
+  },
 };
 
 export default config;
