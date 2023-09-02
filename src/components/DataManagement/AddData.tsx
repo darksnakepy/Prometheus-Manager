@@ -3,22 +3,26 @@ import Link from "next/link";
 import React, { useRef } from 'react';
 import { useRouter } from "next/router";
 import postData from "~/utils/fetcher"; 
+import { useCookies } from "react-cookie";
+import type { DataRequest } from "~/pages/api/data/insertData";
 
 const AddItem = () => {
   const [siteUrl, setSiteUrl] = useState("");
   const [userData, setUserData] = useState("");
   const [password, setPassword] = useState("");
   const [notes, setNotes] = useState("");
+  const [cookies, setCookies, removeCookies] = useCookies(["token"]);
   
   const router = useRouter()    
 
   const submitInfo = async() => {
     if(siteUrl !== "" && userData !== "" && password !== ""){
-        const req = {
+        const req: DataRequest = {
             siteUrl: siteUrl,
             userData: userData,
             password: password,
-            notes: notes
+            notes: notes,
+            sessionId: cookies.token
         }
         const registerResponse = await postData("/api/data/insertData", req)
     }

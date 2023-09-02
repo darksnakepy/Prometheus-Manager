@@ -18,11 +18,30 @@ export default async function handler(request: NextApiRequest, response: NextApi
         const req = request.body as DataRequest
         const user = await prisma.user.findFirst({
             where: {
-
+                sessionId: req.sessionId
         }
         });
+        if(user) {
+            const data = await prisma.account.create({
+                data: {
+                    userId: user.id,
+                    encryptedPass: req.password,
+                    webSiteLink: req.siteUrl,
+                    notes: req.notes,
+                    username: req.userData,
+                }
+            })
+            response.status(200).json({status: "success"})
+        }
+        else return response.status(404).end();
+    }
+}
 
-        /*if(!user){
+export type { DataResponse }
+export type {DataRequest}
+
+
+/*if(!user){
             const newUser = await prisma.user.create({
                 data: {
                     email: req.email,
@@ -36,8 +55,3 @@ export default async function handler(request: NextApiRequest, response: NextApi
 
     } else return response.status(405).end();
     */
-
-    }
-}
-
-export type { DataResponse }
