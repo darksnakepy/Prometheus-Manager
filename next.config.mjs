@@ -19,8 +19,12 @@ const config = {
     defaultLocale: "en",
   },
   images: {
-    domains: [], // Ensure this is an empty array to allow all hosts
-    remotePatterns: [], // Use an empty array to allow all hosts
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
   },
 };
 
