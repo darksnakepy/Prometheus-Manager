@@ -4,10 +4,10 @@ import DisplayDataProps from "~/types/DisplayDataProps";
 const ListElement = ({date, email, icon, link, type} :DisplayDataProps) => {
     return (
         <>
-        <div className="w-[68.5%] h-20 ml-[12%] border-2 border-[#1545af] rounded-md flex flex-row relative text-white mb-4">
+        <div className="w-[68.5%] h-20 ml-[12%] border-2 border-[#1545af] rounded-md flex flex-row relative text-white mb-4 cursor-pointer">
            <div className="flex items-center ml-4">
-                <div className="w-16">
-                        <Image src="/0yha5ybx1qk71.png" width={64} height={64} alt={"icon"} className="rounded-2xl"></Image>
+                <div className="w-8">
+                        <Image src="/0yha5ybx1qk71.png" width={32} height={32} alt={"icon"} className="rounded-2xl"></Image>
                 </div>
            </div>
            <div className="flex flex-col justify-center ml-5">
