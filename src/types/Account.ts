@@ -1,8 +1,8 @@
 export default interface Account {
-    webSiteLink: String
-    username: String
-    encryptedPass: String
-    notes: String
+    webSiteLink: string
+    username: string
+    encryptedPass: string
+    notes: string
     createdAt: Date
     updatedAt: Date
 }
