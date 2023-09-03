@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ToggleSwitch from "./switch";
+import ToggleSwitch from "../switch";
 import Repeat from "~/../public/PassGenIcons/repeat.svg"
 import Copy from "~/../public/PassGenIcons/Copy.svg"
 import Image from "next/image";

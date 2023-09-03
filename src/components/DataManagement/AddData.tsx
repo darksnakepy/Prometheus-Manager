@@ -29,7 +29,7 @@ const AddItem = () => {
   }
 
   return (  
-    <div className="flex flex-row justify-center ml-[20%] z-15">
+    <div className="flex flex-row justify-center z-15">
       <div className="w-[50%] bg-[#1c1f20] absolute top-[10%] flex-col border-2 border-[#1545af] rounded-2xl ml-auto mr-auto">
         <div className="flex items-center flex-col gap-25px overflow-hidden">
           <h1 className="text-white text-24 font-bold mt-8">Register a password</h1>
@@ -51,7 +51,7 @@ const AddItem = () => {
           </div>
           <div className="flex w-[40%] justify-between mt-5 mr-9.5">
             <button onClick={submitInfo} className="flex-none w-[27%] min-w-fit h-10 mt-5 text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-[#1545af] dark:hover:bg-blue-800 focus:outline-none">Add Data</button>
-            <button onClick={() => {}}className="flex-none w-[27%] h-10 mt-5 mb-[20%] text-[#444444] bg-[#ffffff] hover:bg-[#ffffff] font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-[#ffffff] dark:hover:bg-[#ffffff] focus:outline-0">Cancel</button>
+            <button onClick={() => {}}className="flex-none w-[27%] min-w-fit h-10 mt-5 mb-[20%] text-[#444444] bg-[#ffffff] hover:bg-[#ffffff] font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-[#ffffff] dark:hover:bg-[#ffffff] focus:outline-0">Cancel</button>
           </div>
         </div>
       </div>
