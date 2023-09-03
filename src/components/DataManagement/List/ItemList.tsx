@@ -1,31 +1,61 @@
 
 import Image from "next/image";
 import ListElement from "./ListElement";
+import {useEffect, useState} from "react";
+import { useCookies } from "react-cookie";
+import { DataRequest } from "~/pages/api/data/getData";
+import postData from "~/utils/fetcher";
+import Account from "~/types/Account";
+
 //src="data:image/png;base64, 
 
-interface ItemListProps {
-    items: string // JSON of all items 
-}
+
 
 //map the list elements
-const ItemList = ({items} :ItemListProps) => {
-    //add the columns; see ListElement for offset
+const ItemList = () => {
+    const [cookies, setCookies, removeCookies] = useCookies(["token"]);
+    const [data, setData] = useState<Account[]>([]);
+
+    useEffect(() => {
+        async function fetchData(funcSessionId: string) {
+            const req: DataRequest = {
+                sessionId: funcSessionId
+            }
+            const res: Account[] = JSON.parse(await postData("/api/data/getData", req)) as Account[];
+            //The date type gets sent as a string so it needs to be converted back to a date
+            res.forEach(element => {
+                let date = element.createdAt as unknown as string;
+                element.createdAt = new Date(date);
+                date = element.updatedAt as unknown as string;
+                element.updatedAt = new Date(date);
+            });
+            setData(res);
+        }
+
+        fetchData(cookies.token);
+    }, [])
+
+    //TODO: add the columns; see ListElement for offset
     return(
         
         <div className="overflow-auto overflow-x-hidden h-full mr-auto ml-auto w-full">
-            <ListElement date="20/20/20" email="giglo@gmail.com" icon="nicolo" link="link" type="type"></ListElement>
-            <ListElement date="20/20/20" email="giglo@gmail.comfdfdsdfsfsdfsd" icon="nicolo" link="link" type="type"></ListElement>
-            <ListElement date="20/20/20" email="giglo@gmail.comfdfdsdfsfsdfsd" icon="nicolo" link="link" type="type"></ListElement>
-            <ListElement date="20/20/20" email="giglo@gmail.comfdfdsdfsfsdfsd" icon="nicolo" link="link" type="type"></ListElement>
-            <ListElement date="20/20/20" email="giglo@gmail.comfdfdsdfsfsdfsd" icon="nicolo" link="link" type="type"></ListElement>
-            <ListElement date="20/20/20" email="giglo@gmail.comfdfdsdfsfsdfsd" icon="nicolo" link="link" type="type"></ListElement>
-            <ListElement date="20/20/20" email="giglo@gmail.comfdfdsdfsfsdfsd" icon="nicolo" link="link" type="type"></ListElement>
-            <ListElement date="20/20/20" email="giglo@gmail.comfdfdsdfsfsdfsd" icon="nicolo" link="link" type="type"></ListElement>
-            <ListElement date="20/20/20" email="giglo@gmail.comfdfdsdfsfsdfsd" icon="nicolo" link="link" type="type"></ListElement>
-            <ListElement date="20/20/20" email="giglo@gmail.comfdfdsdfsfsdfsd" icon="nicolo" link="link" type="type"></ListElement>
-            <ListElement date="20/20/20" email="giglo@gmail.comfdfdsdfsfsdfsd" icon="nicolo" link="link" type="type"></ListElement>
+            {data.map((item, index) => <ListElement key={index} date={item.createdAt.toLocaleDateString('it-IT')} email={item.username} icon={""} link={item.webSiteLink} type={""} />)}
         </div>
     )
 }
 
 export default ItemList;
+
+/*
+<ListElement date="20/20/20" email="giglo@gmail.com" icon="nicolo" link="link" type="type"></ListElement>
+<ListElement date="20/20/20" email="giglo@gmail.comfdfdsdfsfsdfsd" icon="nicolo" link="link" type="type"></ListElement>
+<ListElement date="20/20/20" email="giglo@gmail.comfdfdsdfsfsdfsd" icon="nicolo" link="link" type="type"></ListElement>
+<ListElement date="20/20/20" email="giglo@gmail.comfdfdsdfsfsdfsd" icon="nicolo" link="link" type="type"></ListElement>
+<ListElement date="20/20/20" email="giglo@gmail.comfdfdsdfsfsdfsd" icon="nicolo" link="link" type="type"></ListElement>
+<ListElement date="20/20/20" email="giglo@gmail.comfdfdsdfsfsdfsd" icon="nicolo" link="link" type="type"></ListElement>
+<ListElement date="20/20/20" email="giglo@gmail.comfdfdsdfsfsdfsd" icon="nicolo" link="link" type="type"></ListElement>
+<ListElement date="20/20/20" email="giglo@gmail.comfdfdsdfsfsdfsd" icon="nicolo" link="link" type="type"></ListElement>
+<ListElement date="20/20/20" email="giglo@gmail.comfdfdsdfsfsdfsd" icon="nicolo" link="link" type="type"></ListElement>
+<ListElement date="20/20/20" email="giglo@gmail.comfdfdsdfsfsdfsd" icon="nicolo" link="link" type="type"></ListElement>
+<ListElement date="20/20/20" email="giglo@gmail.comfdfdsdfsfsdfsd" icon="nicolo" link="link" type="type"></ListElement>
+*/
