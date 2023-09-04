@@ -40,9 +40,9 @@ const SideBar = () =>{
     const renderComponent = () =>{
         switch(activeComponent){
             case "AllItems":
-                return <DisplayData />
-            case "Passwords":
                 return <DisplayData showOnlyPasswords={true} />
+            case "Passwords":
+                return <DisplayData />
             case "Notes":
                 return
             case "Credit Cards":

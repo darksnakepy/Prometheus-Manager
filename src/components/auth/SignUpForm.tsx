@@ -20,7 +20,7 @@ const SignUpForm = () =>{
     const router = useRouter();
 
     const submit = async () => {
-        if (masterPass === repeatPass && isValidPhoneNumber(phoneNumber)) {
+        if (masterPass === repeatPass) {
           setError("");
       
           if (email !== "" && masterPass !== "") {
@@ -49,7 +49,6 @@ const SignUpForm = () =>{
     function isValidPhoneNumber(phone: string): boolean{
         const phoneRegex = /^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9][0-9]{2})\s*\)|([2-9][0-9]{2}))\s*(?:[.-]\s*)?)?([2-9][0-9]{2})\s*(?:[.-]\s*)?([0-9]{4})$/;
         return phoneRegex.test(phone);
-  
     }
         
     return(
