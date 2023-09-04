@@ -10,7 +10,7 @@ export default function Home() {
 
   const router = useRouter();
 
-  const [cookies, setCookies, removeCookies] = useCookies(["token"])
+  const [cookies, setCookies, removeCookies] = useCookies(["token", "email"])
   const [userName, setUserName] = useState("")
   const [userLogged, setUserLogged] = useState(false)
 
@@ -22,10 +22,15 @@ export default function Home() {
           const res = JSON.parse(await postData("/api/data/getName", req));
           setUserName(res.email)
           setUserLogged(true)
-          console.log(res)
       }
-
-      getUserName(cookies.token)
+      if(cookies.email != undefined) {
+        setUserName(cookies.email)
+        setUserLogged(true)
+        return;
+      }
+      if(cookies.token != undefined) {
+        getUserName(cookies.token)
+      }
   }, [])
 
   return (
