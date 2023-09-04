@@ -10,7 +10,7 @@ interface DataRequest {
 export default async function handler(request: NextApiRequest, response: NextApiResponse<string>){
     if (request.method == "POST"){
         const req = request.body as DataRequest;
-        const user = await prisma.user.findFirst({
+        const user = await prisma.user.findUnique({
             where: {
                 sessionId: req.sessionId
             }
