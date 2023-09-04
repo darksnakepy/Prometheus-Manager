@@ -14,7 +14,7 @@ const SignUpForm = () =>{
     const [masterPass, setMasterPass] = useState("")
     const [repeatPass, setRepeatPass] = useState("")
     const [phoneNumber, setPhoneNumber] = useState("")
-    const [cookies, setCookies, removeCookies] = useCookies(["token"]);
+    const [cookies, setCookies, removeCookies] = useCookies(["token", "email"]);
     const [error, setError] = useState("")
 
     const router = useRouter();
@@ -35,6 +35,7 @@ const SignUpForm = () =>{
             try {
               const registerResponse = await postData("/api/register", regreq);
               setCookies("token", registerResponse.sessionId, { path: "/" });
+              setCookies("email", email, { path: "/" })
               await router.replace("/");
             } catch (error) {
             }
