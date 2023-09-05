@@ -19,15 +19,6 @@ import { isAscii } from "buffer"
 import DisplayData from "../DataManagement/DisplayData"
 import ItemList from "../DataManagement/List/ItemList"
 
-/*interface SideBarProps{
-    /*onAllItemsClick: () => void
-    onPasswordsClick: () => void
-    onNotesClick: () => void
-    onCreditCardClick: () => void
-    onTrashClick: () => void
-
-}*/
-
 
 const SideBar = () =>{
 
@@ -40,9 +31,9 @@ const SideBar = () =>{
     const renderComponent = () =>{
         switch(activeComponent){
             case "AllItems":
-                return <DisplayData showOnlyPasswords={true} />
+                return <DisplayData showOnlyPasswords={false} />
             case "Passwords":
-                return <DisplayData />
+                return <DisplayData showOnlyPasswords={true}/>
             case "Notes":
                 return
             case "Credit Cards":

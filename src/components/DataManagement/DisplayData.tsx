@@ -23,7 +23,7 @@ const DisplayData = ({link, icon, email, date, type, showOnlyPasswords}: Display
                 <ItemList />
                 <Modal open={open} onClose={handleClose}>
                     <div className="text-white">
-                        <AddData />
+                        <AddData onCloseClick={handleClose}/>
                     </div>
                 </Modal>
             </div>

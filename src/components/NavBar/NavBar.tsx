@@ -32,7 +32,7 @@ const NavBar = ({onAccountClick, isLogged, userName} : NavBarProps) =>{
                         {isLogged ? <Link href={"/"} className="hover:text-gray-300">{userName}</Link> : <Link href={"/login"} className="hover:text-gray-300">Login</Link>}
                         <Link href={""} className="hover:text-gray-300">Features</Link>
                         <Link href={""} className="hover:text-gray-300">Support</Link>
-                        <Link href={"/dashboard"} className="hover:text-gray-300">Dashboard</Link>
+                        {isLogged ? <Link href={"/dashboard"} className="hover:text-gray-300">Dashboard</Link> : <Link href={"/login"} className="hover:text-gray-300">Dashboard</Link>} 
                     </div>
                 </div> 
                     {isLogged ?  "" : <button className="ml-8 text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-[#1545af] dark:hover:bg-blue-800 focus:outline-none" onClick={onAccountClick}>Sign up</button>}
