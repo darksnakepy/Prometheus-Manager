@@ -6,6 +6,7 @@ import { useCookies } from "react-cookie";
 import { DataRequest } from "~/pages/api/data/getData";
 import postData from "~/utils/fetcher";
 import Account from "~/types/Account";
+import ListElementLoading from "./ListElementLoading";
 
 //src="data:image/png;base64, 
 
@@ -14,7 +15,7 @@ import Account from "~/types/Account";
 //map the list elements
 const ItemList = () => {
     const [cookies, setCookies, removeCookies] = useCookies(["token"]);
-    const [data, setData] = useState<Account[]>([]);
+    const [data, setData] = useState<Account[] | null>(null);
 
     useEffect(() => {
         async function fetchData(funcSessionId: string) {
@@ -34,14 +35,36 @@ const ItemList = () => {
 
         fetchData(cookies.token);
     }, [])
-
     //TODO: add the columns; see ListElement for offset
-    return(
-        
-        <div className="overflow-auto overflow-x-hidden h-full mr-auto ml-auto w-full">
-            {data.map((item, index) => <ListElement key={index} date={item.createdAt.toLocaleDateString('it-IT')} email={item.username} icon={""} link={item.webSiteLink} type={""} />)}
-        </div>
-    )
+    if(data != null) {
+        return(
+            <div className="overflow-auto overflow-x-hidden h-full mr-auto ml-auto w-full">
+                {data.map((item, index) => <ListElement key={index} date={item.createdAt.toLocaleDateString('it-IT')} email={item.username} icon={""} link={item.webSiteLink} type={""} />)}
+                
+            </div>
+        )
+    }
+    else {
+        return (
+            <div className="overflow-auto overflow-x-hidden h-full mr-auto ml-auto w-full">
+                <ListElementLoading></ListElementLoading>
+                <ListElementLoading></ListElementLoading>
+                <ListElementLoading></ListElementLoading>
+                <ListElementLoading></ListElementLoading>
+                <ListElementLoading></ListElementLoading>
+                <ListElementLoading></ListElementLoading>
+                <ListElementLoading></ListElementLoading>
+                <ListElementLoading></ListElementLoading>
+                <ListElementLoading></ListElementLoading>
+                <ListElementLoading></ListElementLoading>
+                <ListElementLoading></ListElementLoading>
+                <ListElementLoading></ListElementLoading>
+                <ListElementLoading></ListElementLoading>
+                <ListElementLoading></ListElementLoading>
+                <ListElementLoading></ListElementLoading>
+            </div>
+        )
+    }
 }
 
 export default ItemList;
