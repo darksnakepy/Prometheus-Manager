@@ -5,4 +5,5 @@ export default interface Account {
     notes: string
     createdAt: Date
     updatedAt: Date
+    passwordSecurity: string
 }

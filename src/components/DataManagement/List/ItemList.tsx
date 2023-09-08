@@ -18,9 +18,14 @@ import DataView from "../ViewData/ViewData";
 const ItemList = () => {
     const [cookies, setCookies, removeCookies] = useCookies(["token"]);
     const [data, setData] = useState<Account[] | null>(null);
+    const [selectedAccount, setSelectedAccount] = useState<Account | null>(null)
+    const [open, setOpen] = useState(false)
 
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
+    const handleOpen = (account: Account) => {
+        setSelectedAccount(account)
+        setOpen(true)
+    }
+
     const handleClose = () => setOpen(false);
 
     useEffect(() => {
@@ -47,12 +52,14 @@ const ItemList = () => {
     if(data != null) {
         return(
             <div className="overflow-auto overflow-x-hidden h-full mr-auto ml-auto w-full">
-                {data.map((item, index) => <ListElement key={index} date={item.createdAt.toLocaleDateString('it-IT')} email={item.username} icon={""} link={item.webSiteLink} type={""} onClick={handleOpen}/> 
+                {data.map((item, index) => <ListElement key={index} date={item.createdAt.toLocaleDateString('it-IT')} email={item.username} icon={""} link={item.webSiteLink} type={""} onClick={() => handleOpen(item)}/> 
                     
                 )}
                 <Modal open={open} onClose={handleClose}>
                         <div className="text-white">
-                            <DataView />
+                            {selectedAccount && (
+                                <DataView link={selectedAccount.webSiteLink} email={selectedAccount.username} password={selectedAccount.encryptedPass} date={""} notes={selectedAccount.notes} passwordSecurity={selectedAccount.passwordSecurity}/>
+                            )}
                         </div>
                 </Modal>
                 
