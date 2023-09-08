@@ -7,6 +7,8 @@ import { DataRequest } from "~/pages/api/data/getData";
 import postData from "~/utils/fetcher";
 import Account from "~/types/Account";
 import ListElementLoading from "./ListElementLoading";
+import { Modal } from "@mui/material";
+import DataView from "../ViewData/ViewData";
 
 //src="data:image/png;base64, 
 
@@ -16,6 +18,10 @@ import ListElementLoading from "./ListElementLoading";
 const ItemList = () => {
     const [cookies, setCookies, removeCookies] = useCookies(["token"]);
     const [data, setData] = useState<Account[] | null>(null);
+
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     useEffect(() => {
         async function fetchData(funcSessionId: string) {
@@ -35,11 +41,20 @@ const ItemList = () => {
 
         fetchData(cookies.token);
     }, [])
+
+
     //TODO: add the columns; see ListElement for offset
     if(data != null) {
         return(
             <div className="overflow-auto overflow-x-hidden h-full mr-auto ml-auto w-full">
-                {data.map((item, index) => <ListElement key={index} date={item.createdAt.toLocaleDateString('it-IT')} email={item.username} icon={""} link={item.webSiteLink} type={""} />)}
+                {data.map((item, index) => <ListElement key={index} date={item.createdAt.toLocaleDateString('it-IT')} email={item.username} icon={""} link={item.webSiteLink} type={""} onClick={handleOpen}/> 
+                    
+                )}
+                <Modal open={open} onClose={handleClose}>
+                        <div className="text-white">
+                            <DataView />
+                        </div>
+                </Modal>
                 
             </div>
         )

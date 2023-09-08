@@ -13,12 +13,9 @@ import Gen from "~/../public/SideBarIcons/Gen.svg"
 
 import Link from "next/link"
 import { useState } from "react"
-import AddItem from "../DataManagement/AddData"
 import PassGen from "../DataManagement/PasswordGeneration/PassGen"
-import { isAscii } from "buffer"
 import DisplayData from "../DataManagement/DisplayData"
-import ItemList from "../DataManagement/List/ItemList"
-
+import ViewData from "../DataManagement/ViewData/ViewData"
 
 const SideBar = () =>{
 
@@ -35,7 +32,7 @@ const SideBar = () =>{
             case "Passwords":
                 return <DisplayData showOnlyPasswords={true}/>
             case "Notes":
-                return
+                return <ViewData />
             case "Credit Cards":
                 return
             case "pswgen":

@@ -6,4 +6,5 @@ export default interface DisplayDataProps{
     type?: string //?type of account
     id?: string //unique id of the account
     showOnlyPasswords?: boolean //if true, only show passwords, else show all items
+    onClick?: () => void
 }
