@@ -29,6 +29,7 @@ const AddItem = ({onCloseClick}: AddDataProps) => {
             sessionId: cookies.token
         }
         const registerResponse = await postData("/api/data/insertData", req)
+        router.reload();
     }
   }
 
