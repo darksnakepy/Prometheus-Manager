@@ -39,7 +39,7 @@ const AddItem = ({onCloseClick}: AddDataProps) => {
           <h1 className="text-white text-24 font-bold mt-8">Register a password</h1>
           <div className="flex flex-col w-[40%] mt-2">
             <label className="text-white text-sm mb-1" htmlFor="url">URL</label>
-            <input type="text" id="url" onChange={(e: ChangeEvent<HTMLInputElement>) => setSiteUrl(e.target.value)} className="outline-none pl-3 bg-[#181a1b] h-12 mb-[5%] rounded-[8px] placeholder-white-[0.6] placeholder-14px text-14px text-white" placeholder="" />
+            <input type="text" id="url" onChange={(e: ChangeEvent<HTMLInputElement>) => setSiteUrl(e.target.value)} className="outline-none pl-3 bg-[#181a1b] h-12 mb-[5%] rounded-[8px] placeholder-white-[0.6] placeholder-14px text-14px text-white" placeholder="Format: site.com" />
           </div>
           <div className="flex flex-col w-[40%]">
             <label className="text-white text-sm mb-1" htmlFor="userData">Username or Email</label>
