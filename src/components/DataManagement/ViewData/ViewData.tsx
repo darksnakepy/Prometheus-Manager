@@ -3,7 +3,8 @@ import Image from "next/image";
 import { fetchImage } from "~/utils/FetchImage";
 import Trash from "~/../public/SideBarIcons/Trash.svg"
 import Cross from "~/../public/SideBarIcons/x.svg"
-
+import zxcvbn from 'zxcvbn'
+import { useState } from "react";
 
 const DataView = ({ link, email, password, date, notes, passwordSecurity, onTrashClick, onCrossClick }: ViewDataProps) => {
 

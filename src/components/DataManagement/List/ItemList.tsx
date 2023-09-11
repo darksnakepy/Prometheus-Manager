@@ -56,9 +56,8 @@ const ItemList = () => {
     if(data != null) {
         return(
             <div className="overflow-auto overflow-x-hidden h-full mr-auto ml-auto w-full">
-                {data.map((item, index) => <div><ListElement key={index} date={item.createdAt.toLocaleDateString('it-IT')} email={item.username} link={item.webSiteLink} type={""} onClick={() => handleOpen(item)}></ListElement>
-                    
-            </div>
+                {data.map((item, index) => <ListElement key={index} date={item.createdAt.toLocaleDateString('it-IT')} email={item.username} link={item.webSiteLink} type={""} onClick={() => handleOpen(item)}></ListElement>
+                
                  
                 )}
                 <Modal open={open} onClose={handleClose}>

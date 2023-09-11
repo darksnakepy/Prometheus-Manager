@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import postData from "~/utils/fetcher"; 
 import { useCookies } from "react-cookie";
 import type { DataRequest } from "~/pages/api/data/insertData";
+import zxcvbn from "zxcvbn";
 
 interface AddDataProps{
     onCloseClick: () => void
@@ -33,6 +34,13 @@ const AddItem = ({onCloseClick}: AddDataProps) => {
     }
   }
 
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const newPassword = e.target.value;
+    setPassword(newPassword);
+    let result = zxcvbn(newPassword);
+    console.log(result.feedback.warning)
+  };
+
   return (  
     <div className="flex flex-row justify-center z-15">
       <div className="w-[50%] bg-[#1c1f20] absolute top-[10%] flex-col border-2 border-[#1545af] rounded-2xl ml-auto mr-auto">
@@ -48,7 +56,7 @@ const AddItem = ({onCloseClick}: AddDataProps) => {
           </div>
           <div className="flex flex-col w-[40%]">
             <label className="text-white text-sm mb-1" htmlFor="password">Password</label>
-            <input type="text" id="password" onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} className="outline-none pl-3 bg-[#181a1b] h-12 mb-[5%] rounded-[8px] placeholder-white-[0.6] placeholder-14px text-14px text-white" placeholder="" />
+            <input type="text" id="password" onChange={handlePasswordChange} className="outline-none pl-3 bg-[#181a1b] h-12 mb-[5%] rounded-[8px] placeholder-white-[0.6] placeholder-14px text-14px text-white" placeholder="" />
           </div>
           <div className="flex flex-col w-[40%]">
             <label className="text-white text-sm mb-1" htmlFor="notes">Notes</label>
