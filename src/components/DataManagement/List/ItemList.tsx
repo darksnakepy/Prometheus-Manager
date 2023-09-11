@@ -9,7 +9,7 @@ import Account from "~/types/Account";
 import ListElementLoading from "./ListElementLoading";
 import { Modal } from "@mui/material";
 import DataView from "../ViewData/ViewData";
-
+import Trash from "~/../public/SideBarIcons/Trash.svg";
 //src="data:image/png;base64, 
 
 
@@ -27,6 +27,10 @@ const ItemList = () => {
     }
 
     const handleClose = () => setOpen(false);
+
+    const functi = () =>{
+        console.log("diocane")
+    }
 
     useEffect(() => {
         async function fetchData(funcSessionId: string) {
@@ -52,13 +56,21 @@ const ItemList = () => {
     if(data != null) {
         return(
             <div className="overflow-auto overflow-x-hidden h-full mr-auto ml-auto w-full">
-                {data.map((item, index) => <ListElement key={index} date={item.createdAt.toLocaleDateString('it-IT')} email={item.username} link={item.webSiteLink} type={""} onClick={() => handleOpen(item)}/> 
+                {data.map((item, index) => <div><ListElement key={index} date={item.createdAt.toLocaleDateString('it-IT')} email={item.username} link={item.webSiteLink} type={""} onClick={() => handleOpen(item)}></ListElement>
                     
+            </div>
+                 
                 )}
                 <Modal open={open} onClose={handleClose}>
                         <div className="text-white">
                             {selectedAccount && (
-                                <DataView link={selectedAccount.webSiteLink} email={selectedAccount.username} password={selectedAccount.encryptedPass} date={""} notes={selectedAccount.notes} passwordSecurity={selectedAccount.passwordSecurity}/>
+                                <DataView link={selectedAccount.webSiteLink} 
+                                    email={selectedAccount.username} 
+                                    password={selectedAccount.encryptedPass} 
+                                    date={""} notes={selectedAccount.notes} 
+                                    passwordSecurity={selectedAccount.passwordSecurity} 
+                                    onTrashClick={() =>{functi}}
+                                    onCrossClick={() =>{handleClose}}/>
                             )}
                         </div>
                 </Modal>

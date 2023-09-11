@@ -7,4 +7,6 @@ export default interface ViewDataProps{
     date?: string //date the account was created
     passwordSecurity?: string
     notes?: string
+    onTrashClick?: () => void
+    onCrossClick?: () => void
 }

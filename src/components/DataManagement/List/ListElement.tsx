@@ -28,31 +28,3 @@ const ListElement = ({date, email, icon, link, type, onClick} :DisplayDataProps)
 }
 
 export default ListElement;
-
-/*
-<style>
-  .container {
-    position: relative;
-  }
-
-  .fixed-x {
-    position: absolute;
-    left: 100px; // Adjust this value to set the desired X-axis position
-}
-</style>
-
-<div class="container">
-  <div>
-    Content before the fixed element.
-  </div>
-
-  <div class="fixed-x">
-    This element is fixed at X = 100px, regardless of previous content length.
-  </div>
-</div>
-
-<div>
-  More content after the fixed element.
-</div>
-
- */
