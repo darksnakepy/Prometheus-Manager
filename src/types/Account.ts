@@ -1,4 +1,5 @@
 export default interface Account {
+    id: string
     webSiteLink: string
     username: string
     encryptedPass: string
