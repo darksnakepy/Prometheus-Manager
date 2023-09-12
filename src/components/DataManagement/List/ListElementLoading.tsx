@@ -1,6 +1,3 @@
-import Image from "next/image";
-import DisplayDataProps from "~/types/DisplayDataProps";
-
 const ListElementLoading = () => {
     return (
         <>

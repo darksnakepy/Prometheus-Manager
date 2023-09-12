@@ -1,5 +1,3 @@
-
-import Image from "next/image";
 import ListElement from "./ListElement";
 import {useEffect, useState} from "react";
 import { useCookies } from "react-cookie";
@@ -9,7 +7,6 @@ import Account from "~/types/Account";
 import ListElementLoading from "./ListElementLoading";
 import { Modal } from "@mui/material";
 import DataView from "../ViewData/ViewData";
-import Trash from "~/../public/SideBarIcons/Trash.svg";
 //src="data:image/png;base64, 
 
 
@@ -28,8 +25,9 @@ const ItemList = () => {
 
     const handleClose = () => setOpen(false);
 
-    const functi = () =>{
-        console.log("diocane")
+    const deleteItem = () =>{
+        
+
     }
 
     useEffect(() => {
@@ -68,8 +66,8 @@ const ItemList = () => {
                                     password={selectedAccount.encryptedPass} 
                                     date={""} notes={selectedAccount.notes} 
                                     passwordSecurity={selectedAccount.passwordSecurity} 
-                                    onTrashClick={() =>{functi}}
-                                    onCrossClick={() =>{handleClose}}/>
+                                    onTrashClick={deleteItem}
+                                    onCrossClick={handleClose}/>
                             )}
                         </div>
                 </Modal>

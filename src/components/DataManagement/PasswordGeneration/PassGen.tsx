@@ -76,13 +76,13 @@ const PassGen = () =>{
         const containsDigit = digitRegex.test(password);
         const containsSpecialChar = specialCharRegex.test(password);
       
-        if (containsUppercaseLetter && containsDigit && containsSpecialChar) {
+        if (containsUppercaseLetter && containsDigit && containsSpecialChar && password.length > 16) {
           setSecurityStatus("Password security: Strong");
           console.log(securityStatus);
-        } else if(containsUppercaseLetter && containsDigit) {
+        } else if(containsUppercaseLetter && containsDigit && password.length > 12) {
           setSecurityStatus("Password security: Good");
           console.log(securityStatus);
-        }else if(containsUppercaseLetter) {
+        }else if(password.length > 8) {
             setSecurityStatus("Password security: Okay");
             console.log(securityStatus);
         }else{

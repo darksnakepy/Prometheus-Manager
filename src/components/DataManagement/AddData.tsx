@@ -1,6 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import Link from "next/link";
-import React, { useRef } from 'react';
+import React from 'react';
 import { useRouter } from "next/router";
 import postData from "~/utils/fetcher"; 
 import { useCookies } from "react-cookie";

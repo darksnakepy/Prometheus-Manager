@@ -3,10 +3,20 @@ import Image from "next/image";
 import { fetchImage } from "~/utils/FetchImage";
 import Trash from "~/../public/SideBarIcons/Trash.svg"
 import Cross from "~/../public/SideBarIcons/x.svg"
-import zxcvbn from 'zxcvbn'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const DataView = ({ link, email, password, date, notes, passwordSecurity, onTrashClick, onCrossClick }: ViewDataProps) => {
+
+  const [passwordHidden, setPasswordHidden] = useState(true)
+  const [passwordlen, setPasswordLen] = useState("")
+
+  useEffect(() => {
+    if (password) {
+      setPasswordLen("•".repeat(password.length));
+    } else {
+      setPasswordLen("");
+    }
+  }, [password]);
 
   return (
     <div className="flex flex-row justify-center z-15">
@@ -26,7 +36,7 @@ const DataView = ({ link, email, password, date, notes, passwordSecurity, onTras
             </div>
             <div className="label-and-value flex items-center">
               <div className="label mt-5">Password</div>
-              <div className="value absolute left-[64%] mt-5">{password}</div>
+              <div className="value absolute left-[64%] mt-5">{passwordHidden ? passwordlen : password } <button onClick={()=>{setPasswordHidden(!passwordHidden)}}> show </button></div>
               <div className="w-[65%] h-[1px] bg-white absolute mt-1 left-0 ml-[17.5%] mt-[9%]" />
             </div>
             <div className="label-and-value flex items-center">
@@ -51,7 +61,6 @@ const DataView = ({ link, email, password, date, notes, passwordSecurity, onTras
 };
 
 export default DataView;
-
 
 
 

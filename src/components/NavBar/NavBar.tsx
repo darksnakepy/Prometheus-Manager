@@ -1,12 +1,7 @@
 import Link from "next/link";
-import {useRouter} from "next/navigation";
 import React from "react";
-import { useCookies } from "react-cookie";
-import { useState, useEffect } from "react";
 import Image from "next/image";
 import Logo from "~/../public/logo.png"
-import { DataRequest } from "~/pages/api/data/getData";
-import postData from "~/utils/fetcher";
 
 interface NavBarProps{
     onAccountClick?: () => void

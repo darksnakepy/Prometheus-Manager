@@ -15,7 +15,6 @@ import Link from "next/link"
 import { useState } from "react"
 import PassGen from "../DataManagement/PasswordGeneration/PassGen"
 import DisplayData from "../DataManagement/DisplayData"
-import ViewData from "../DataManagement/ViewData/ViewData"
 
 const SideBar = () =>{
 
