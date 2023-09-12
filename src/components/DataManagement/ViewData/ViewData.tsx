@@ -4,11 +4,16 @@ import { fetchImage } from "~/utils/FetchImage";
 import Trash from "~/../public/SideBarIcons/Trash.svg"
 import Cross from "~/../public/SideBarIcons/x.svg"
 import { useState, useEffect } from "react";
+import { DataRequest } from "~/pages/api/data/deleteData";
+import { useRouter } from "next/router";
+import postData from "~/utils/fetcher";
 
-const DataView = ({ link, email, password, date, notes, passwordSecurity, onTrashClick, onCrossClick }: ViewDataProps) => {
+const DataView = ({ id, link, email, password, date, notes, passwordSecurity, onCrossClick, token }: ViewDataProps) => {
 
   const [passwordHidden, setPasswordHidden] = useState(true)
-  const [passwordlen, setPasswordLen] = useState("")
+  const [passwordLen, setPasswordLen] = useState("")
+  const router = useRouter();
+
 
   useEffect(() => {
     if (password) {
@@ -18,14 +23,25 @@ const DataView = ({ link, email, password, date, notes, passwordSecurity, onTras
     }
   }, [password]);
 
+  const onTrashClick = async () => {
+    if (token && id) {
+      const req: DataRequest = {
+        sessionId: token,
+        accountId: id
+      }
+      const registerResponse = await postData("/api/data/deleteData", req)
+      router.reload();
+    }
+  }
+
   return (
     <div className="flex flex-row justify-center z-15">
       <div className="w-[50%] h-[60%] bg-[#1c1f20] absolute top-[10%] flex-col border-2 border-[#1545af] rounded-2xl ml-auto mr-auto">
         <div className="flex items-center flex-col gap-5 overflow-hidden mt-5 mb-2">
           <div className="flex items-center">
-            <Image src={fetchImage(link)} width={80} height={80} alt="" className=""/>
-            <Image src={Trash} width={32} height={32} alt="trash" className="absolute left-[89%] cursor-pointer" onClick={onTrashClick}/>
-            <Image src={Cross} width={30} height={30} alt="cross" className="absolute left-[93%] cursor-pointer" onClick={onCrossClick}/>
+            <Image src={fetchImage(link)} width={80} height={80} alt="" className="" />
+            <Image src={Trash} width={32} height={32} alt="trash" className="absolute left-[89%] cursor-pointer" onClick={onTrashClick} />
+            <Image src={Cross} width={30} height={30} alt="cross" className="absolute left-[93%] cursor-pointer" onClick={onCrossClick} />
           </div>
           <h1 className="text-white text-[28px] font-bold">{link}</h1>
           <div className="w-[65%] flex flex-col text-white space-y-5 mt-3">
@@ -36,7 +52,7 @@ const DataView = ({ link, email, password, date, notes, passwordSecurity, onTras
             </div>
             <div className="label-and-value flex items-center">
               <div className="label mt-5">Password</div>
-              <div className="value absolute left-[64%] mt-5">{passwordHidden ? passwordlen : password } <button onClick={()=>{setPasswordHidden(!passwordHidden)}}> show </button></div>
+              <div className="value absolute left-[64%] mt-5">{passwordHidden ? passwordLen : password} <button onClick={() => { setPasswordHidden(!passwordHidden) }}> show </button></div>
               <div className="w-[65%] h-[1px] bg-white absolute mt-1 left-0 ml-[17.5%] mt-[9%]" />
             </div>
             <div className="label-and-value flex items-center">

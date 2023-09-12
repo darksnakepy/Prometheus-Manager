@@ -25,11 +25,6 @@ const ItemList = () => {
 
     const handleClose = () => setOpen(false);
 
-    const deleteItem = () =>{
-        
-
-    }
-
     useEffect(() => {
         async function fetchData(funcSessionId: string) {
             const req: DataRequest = {
@@ -54,7 +49,7 @@ const ItemList = () => {
     if(data != null) {
         return(
             <div className="overflow-auto overflow-x-hidden h-full mr-auto ml-auto w-full">
-                {data.map((item, index) => <ListElement key={index} date={item.createdAt.toLocaleDateString('it-IT')} email={item.username} link={item.webSiteLink} type={""} onClick={() => handleOpen(item)}></ListElement>
+                {data.map((item, index) => <ListElement key={data[index]?.id} date={item.createdAt.toLocaleDateString('it-IT')} email={item.username} link={item.webSiteLink} type={""} onClick={() => handleOpen(item)}></ListElement>
                 
                  
                 )}
@@ -66,8 +61,9 @@ const ItemList = () => {
                                     password={selectedAccount.encryptedPass} 
                                     date={""} notes={selectedAccount.notes} 
                                     passwordSecurity={selectedAccount.passwordSecurity} 
-                                    onTrashClick={deleteItem}
-                                    onCrossClick={handleClose}/>
+                                    id={selectedAccount.id}
+                                    onCrossClick={handleClose}
+                                    token={cookies.token}/>
                             )}
                         </div>
                 </Modal>
