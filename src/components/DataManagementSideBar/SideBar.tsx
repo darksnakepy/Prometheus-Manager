@@ -5,6 +5,7 @@ import Password from "~/../public/SideBarIcons/Password.svg"
 import Document from "~/../public/SideBarIcons/Document.svg"
 import CreditCard from "~/../public/SideBarIcons/CreditCard.svg"
 import Trash from "~/../public/SideBarIcons/Trash.svg"
+import { useCookies } from "react-cookie";
 
 import Settings from "~/../public/SideBarIcons/Settings.svg"
 import User from "~/../public/SideBarIcons/user.svg"
@@ -15,11 +16,13 @@ import Link from "next/link"
 import { useState } from "react"
 import PassGen from "../DataManagement/PasswordGeneration/PassGen"
 import DisplayData from "../DataManagement/DisplayData"
+import { useRouter } from "next/router"
+
 
 const SideBar = () =>{
-
+    const router = useRouter()
     const [activeComponent, setActiveComponent] = useState("AllItems")
-
+    const [cookies, setCookies, removeCookies] = useCookies(["token", "email"]);
     const handleClick = (componentName: string) => {
         setActiveComponent(componentName)
     }
@@ -41,7 +44,6 @@ const SideBar = () =>{
         }
     }
 
-
     return(
         <div>
             {renderComponent()}
@@ -62,7 +64,9 @@ const SideBar = () =>{
                 <div className="fixed bottom-2 left-0 flex flex-row ml-5">
                     <Link href="/user/profile"> <Image alt="logo" width="30" height="30" src={User} onClick={() => {}}/></Link>
                     <Link href="/user/settings"> <Image alt="logo" width="30" height="30" src={Settings} onClick={() => {}}/></Link>
+                    <Image className="cursor-pointer" src={"/exit.svg"} width={30} height={30} alt="logo" onClick={() => {removeCookies("token"); removeCookies("email"); router.replace("/login")}}/>
                 </div>
+            
             </div>
         </div>
     ) 

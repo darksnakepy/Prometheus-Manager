@@ -66,7 +66,7 @@ const SignUpForm = () =>{
                     <div className="text-white mt-3 text-[15px]">
                         Already a member? <Link className="hover:underline" href={"/login"}>Log in</Link>
                     </div>
-                    <p className="text-[#582121]">{error}</p>
+                    <div className="text-[#b81414]">{error}</div>
                 </div>
             </div>
         </div>

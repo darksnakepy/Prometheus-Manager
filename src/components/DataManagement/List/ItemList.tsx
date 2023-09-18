@@ -7,12 +7,11 @@ import Account from "~/types/Account";
 import ListElementLoading from "./ListElementLoading";
 import { Modal } from "@mui/material";
 import DataView from "../ViewData/ViewData";
-//src="data:image/png;base64, 
-
-
+import { useRouter } from "next/router";
 
 //map the list elements
 const ItemList = () => {
+    const router = useRouter()
     const [cookies, setCookies, removeCookies] = useCookies(["token"]);
     const [data, setData] = useState<Account[] | null>(null);
     const [selectedAccount, setSelectedAccount] = useState<Account | null>(null)
@@ -26,6 +25,10 @@ const ItemList = () => {
     const handleClose = () => setOpen(false);
 
     useEffect(() => {
+        if(cookies.token == undefined){
+            router.push("/login")            
+        }
+
         async function fetchData(funcSessionId: string) {
             const req: DataRequest = {
                 sessionId: funcSessionId
@@ -59,8 +62,7 @@ const ItemList = () => {
                                 <DataView link={selectedAccount.webSiteLink} 
                                     email={selectedAccount.username} 
                                     password={selectedAccount.encryptedPass} 
-                                    date={""} notes={selectedAccount.notes} 
-                                    passwordSecurity={selectedAccount.passwordSecurity} 
+                                    date={selectedAccount.createdAt.toLocaleDateString('it-IT')} notes={selectedAccount.notes} 
                                     id={selectedAccount.id}
                                     onCrossClick={handleClose}
                                     token={cookies.token}/>

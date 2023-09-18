@@ -8,10 +8,11 @@ import { DataRequest } from "~/pages/api/data/deleteData";
 import { useRouter } from "next/router";
 import postData from "~/utils/fetcher";
 
-const DataView = ({ id, link, email, password, date, notes, passwordSecurity, onCrossClick, token }: ViewDataProps) => {
+const DataView = ({ id, link, email, password, date, notes, onCrossClick, token }: ViewDataProps) => {
 
   const [passwordHidden, setPasswordHidden] = useState(true)
   const [passwordLen, setPasswordLen] = useState("")
+  const [securityStatus, setSecurityStatus] = useState("")
   const router = useRouter();
 
 
@@ -21,6 +22,7 @@ const DataView = ({ id, link, email, password, date, notes, passwordSecurity, on
     } else {
       setPasswordLen("");
     }
+    checkSecurityPass(password)
   }, [password]);
 
   const onTrashClick = async () => {
@@ -33,6 +35,31 @@ const DataView = ({ id, link, email, password, date, notes, passwordSecurity, on
       router.reload();
     }
   }
+
+
+  const checkSecurityPass = (password: string) =>{
+    const uppercaseLetterRegex = /[A-Z]/;
+    const digitRegex = /[0-9]/;
+    const specialCharRegex = /[!@#$%^&*_]/;
+
+    const containsUppercaseLetter = uppercaseLetterRegex.test(password);
+    const containsDigit = digitRegex.test(password);
+    const containsSpecialChar = specialCharRegex.test(password);
+  
+    if (containsUppercaseLetter && containsDigit && containsSpecialChar && password.length > 16) {
+      setSecurityStatus("Password security: Strong");
+      console.log(securityStatus);
+    } else if(containsUppercaseLetter && containsDigit && password.length > 12) {
+      setSecurityStatus("Password security: Good");
+      console.log(securityStatus);
+    }else if(password.length > 8) {
+        setSecurityStatus("Password security: Okay");
+        console.log(securityStatus);
+    }else{
+        setSecurityStatus("Password security: Very Weak");
+        console.log(securityStatus);
+    }
+}
 
   return (
     <div className="flex flex-row justify-center z-15">
@@ -52,12 +79,12 @@ const DataView = ({ id, link, email, password, date, notes, passwordSecurity, on
             </div>
             <div className="label-and-value flex items-center">
               <div className="label mt-5">Password</div>
-              <div className="value absolute left-[64%] mt-5">{passwordHidden ? passwordLen : password} <button onClick={() => { setPasswordHidden(!passwordHidden) }}> show </button></div>
+              <div className="value absolute left-[64%] mt-5 flex flex-row">{passwordHidden ? passwordLen : password} {passwordHidden ? <Image className="cursor-pointer ml-2 mt-1" width={20} height={20} src={"/eye.svg"} alt="icon" onClick={() => setPasswordHidden(!passwordHidden)} /> : <Image className="cursor-pointer ml-2 mt-1" width={20} height={20} src={"/eye-slash.svg"} alt="icon" onClick={() => setPasswordHidden(!passwordHidden)} />}</div>
               <div className="w-[65%] h-[1px] bg-white absolute mt-1 left-0 ml-[17.5%] mt-[9%]" />
             </div>
             <div className="label-and-value flex items-center">
               <div className="label mt-5">Password Security</div>
-              <div className="value absolute left-[64%] mt-5">{passwordSecurity}</div>
+              <div className="value absolute left-[64%] mt-5">{securityStatus}</div>
               <div className="w-[65%] h-[1px] bg-white absolute mt-1 left-0 ml-[17.5%] mt-[9%]" />
             </div>
             <div className="label-and-value flex items-center">
