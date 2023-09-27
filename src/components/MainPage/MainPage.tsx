@@ -1,5 +1,6 @@
 import { GoArrowUpRight } from "react-icons/go"
 import { useRouter } from "next/router"
+import Spinner from "../Spinner/Spinner"
 
 const MainPage = () =>{
 
