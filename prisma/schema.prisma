@@ -37,6 +37,7 @@ model Account {
 
 model Note {
   id               String  @id @default(auto()) @map("_id") @db.ObjectId
+  header           String
   note             String
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
