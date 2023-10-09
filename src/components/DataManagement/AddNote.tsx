@@ -3,7 +3,7 @@ import React from 'react';
 import { useRouter } from "next/router";
 import postData from "~/utils/fetcher"; 
 import { useCookies } from "react-cookie";
-import type { DataRequest } from "~/pages/api/data/insertData";
+import type { NotesRequest } from "~/pages/api/data/insertNotes";
 
 interface AddDataProps{
     onCloseClick: () => void

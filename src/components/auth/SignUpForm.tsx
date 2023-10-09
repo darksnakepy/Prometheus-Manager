@@ -54,7 +54,7 @@ const SignUpForm = () =>{
         
     return(
         <div className="flex justify-center">
-                    <div className="w-[90%] sm:w-[25%] sm:min-w-[30px] h-[70%] mx-auto bg-[#1c1f20] w-15 absolute top-[15%] flex-col border-2 border-[#1545af] rounded-2xl ml-auto mr-auto flex">                <div className="flex items-center flex-col gap-25px overflow-hidden">
+                    <div className="w-full sm:w-4/5 md:w-2/3 lg:w-1/2 xl:w-1/3 h-[70%] mx-auto bg-[#1c1f20] w-15 absolute top-[15%] flex-col border-2 border-[#1545af] rounded-2xl ml-auto mr-auto flex">                <div className="flex items-center flex-col gap-25px overflow-hidden">
                     <Image width="80" height="60" alt="Logo" src={Logo} className="mt-3"></Image> 
                     <h1 className="text-white text-[24px] font-bold mt-8">SIGN UP</h1>
                     <input type="text" onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} name="email" placeholder="Email" className="outline-none pl-[14px] bg-[#181a1b] mt-5 w-[70%] sm:w-[60%] h-12 mb-[5%] rounded-[4px] placeholder:text-white/[0.6] placeholder:text-[14px] text-[14px] text-white" />
