@@ -4,6 +4,7 @@ import ItemList from "./List/ItemList"
 import { Modal } from "@mui/material";
 import AddData from "./AddData";
 import DisplayDataProps from "~/types/DisplayDataProps";
+import AddNote from "./AddNote";
 
 
 const DisplayData = ({link, icon, email, date, type, showOnlyPasswords}: DisplayDataProps) => {

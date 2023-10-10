@@ -9,26 +9,24 @@ interface AddDataProps{
     onCloseClick: () => void
 }
 
-const AddItem = ({onCloseClick}: AddDataProps) => {
+const AddNote = ({onCloseClick}: AddDataProps) => {
   const [header, setHeader] = useState("");
   const [notes, setNotes] = useState("");
   const [cookies, setCookies, removeCookies] = useCookies(["token"]);
   
   const router = useRouter()    
 
-  /*const submitInfo = async() => {
-    if(siteUrl !== "" && userData !== "" && password !== ""){
-        const req: DataRequest = {
-            siteUrl: siteUrl,
-            userData: userData,
-            password: password,
+ const submitNotes = async() => {
+    if(header !== "" && notes !== ""){
+        const req: NotesRequest = {
+            header: header,
             notes: notes,
-            sessionId: cookies.token
+
         }
-        const registerResponse = await postData("/api/data/insertData", req)
+        const notesResponse = await postData("/api/data/insertNotes", req)
         router.reload();
     }
-  }*/
+  }
 
   return (  
     <div className="flex flex-row justify-center z-15">
@@ -53,4 +51,4 @@ const AddItem = ({onCloseClick}: AddDataProps) => {
   );
 };
 
-export default AddItem;
+export default AddNote;

@@ -20,12 +20,15 @@ export default async function handler(request: NextApiRequest, response: NextApi
             }
         })
         if(user){
-            const data = await prisma.
+            const data = await prisma.note.create({
+                data: {
+                    header: req.header,
+                    note: req.notes,
+                }
             })
+            return response.status(200).json({status: "success"})
         }
-
-
-
+        else return response.status(404).json({status: "error"})
     }
 
 }
