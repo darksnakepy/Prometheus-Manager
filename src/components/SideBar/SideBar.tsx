@@ -34,7 +34,7 @@ const SideBar = () =>{
             case "Passwords":
                 return <DisplayData showOnlyPasswords={true}/>
             case "Notes":
-                return
+                return <DisplayData />
             case "Credit Cards":
                 return
             case "pswgen":
