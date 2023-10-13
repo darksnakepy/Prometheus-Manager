@@ -6,8 +6,8 @@ import postData from "~/utils/fetcher";
 import Account from "~/types/Account";
 import ListElementLoading from "./ListElementLoading";
 import { Modal } from "@mui/material";
-import DataView from "../ViewData/ViewData";
 import { useRouter } from "next/router";
+import ViewData from "../ViewData/ViewData";
 
 //map the list elements
 const ItemList = () => {
@@ -59,7 +59,7 @@ const ItemList = () => {
                 <Modal open={open} onClose={handleClose}>
                         <div className="text-white">
                             {selectedAccount && (
-                                <DataView link={selectedAccount.webSiteLink} 
+                                <ViewData link={selectedAccount.webSiteLink} 
                                     email={selectedAccount.username} 
                                     password={selectedAccount.encryptedPass} 
                                     date={selectedAccount.createdAt.toLocaleDateString('it-IT')} notes={selectedAccount.notes} 

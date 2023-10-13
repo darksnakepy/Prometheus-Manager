@@ -1,4 +1,4 @@
-import SideBar from "../DataManagementSideBar/SideBar"
+import SideBar from "../SideBar/SideBar"
 
 const DataManagementWindow = () => {
     return(

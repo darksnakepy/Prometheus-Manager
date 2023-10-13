@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { useState, useEffect } from "react"
-import ItemList from "./List/ItemList"
+import ItemList from "./ItemList/ItemList"
 import { Modal } from "@mui/material";
 import AddData from "./AddData";
 import DisplayDataProps from "~/types/DisplayDataProps";

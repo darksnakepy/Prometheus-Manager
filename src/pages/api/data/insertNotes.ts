@@ -8,7 +8,7 @@ interface NotesResponse{
 interface NotesRequest{
     header: string
     notes: string
-    userId: string
+    sessionId: string
 }
 
 export default async function handler(request: NextApiRequest, response: NextApiResponse<NotesResponse>){
@@ -16,7 +16,7 @@ export default async function handler(request: NextApiRequest, response: NextApi
         const req = request.body as NotesRequest
         const user = await prisma.user.findUnique({
             where: {
-                id: req.userId
+                sessionId: req.sessionId
             }
         })
         if(user){

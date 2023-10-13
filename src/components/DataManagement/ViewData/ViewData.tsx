@@ -8,7 +8,7 @@ import { DataRequest } from "~/pages/api/data/deleteData";
 import { useRouter } from "next/router";
 import postData from "~/utils/fetcher";
 
-const DataView = ({ id, link, email, password, date, notes, onCrossClick, token }: ViewDataProps) => {
+const ViewData = ({ id, link, email, password, date, notes, onCrossClick, token }: ViewDataProps) => {
 
   const [passwordHidden, setPasswordHidden] = useState(true)
   const [passwordLen, setPasswordLen] = useState("")
@@ -103,7 +103,7 @@ const DataView = ({ id, link, email, password, date, notes, onCrossClick, token 
   );
 };
 
-export default DataView;
+export default ViewData;
 
 
 

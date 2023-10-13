@@ -1,4 +1,4 @@
-import SideBarItems from "../DataManagementSideBar/SideBarItems"
+import SideBarItems from "./SideBarItems"
 import Image from "next/image"
 import AllItemsLogo from "~/../public/SideBarIcons/Allitems.svg"
 import Password from "~/../public/SideBarIcons/Password.svg"
@@ -14,7 +14,7 @@ import Gen from "~/../public/SideBarIcons/Gen.svg"
 
 import Link from "next/link"
 import { useState } from "react"
-import PassGen from "../DataManagement/PasswordGeneration/PassGen"
+import PassGen from "../DataManagement/PswGenerator/PassGen"
 import DisplayData from "../DataManagement/DisplayData"
 import { useRouter } from "next/router"
 
