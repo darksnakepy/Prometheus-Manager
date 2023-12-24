@@ -7,7 +7,7 @@ import DisplayDataProps from "~/types/DisplayDataProps";
 import AddNote from "./AddNote";
 
 
-const DisplayData = ({link, icon, email, date, type, showOnlyPasswords}: DisplayDataProps) => {
+const DisplayData = ({link, icon, email, date, notes, showOnlyPasswords}: DisplayDataProps) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -22,18 +22,18 @@ const DisplayData = ({link, icon, email, date, type, showOnlyPasswords}: Display
                     <div className="w-[68.5%] h-[2px] bg-white absolute mt-[5%] left-0 ml-[12%] " />
                 </div>
                 <ItemList />
-                {type ? 
-                <Modal open={open} onClose={handleClose}>
-                    <div className="text-white">
-                        <AddData onCloseClick={handleClose}/>
-                    </div>
-                </Modal>
+                {notes ? 
+                    <Modal open={open} onClose={handleClose}>
+                        <div className="text-white">
+                            <AddNote onCloseClick={handleClose}/>
+                        </div>
+                    </Modal>
                 :
-                <Modal open={open} onClose={handleClose}>
-                    <div className="text-white">
-                        <AddNote onCloseClick={handleClose}/>
-                    </div>
-                </Modal>
+                    <Modal open={open} onClose={handleClose}>
+                        <div className="text-white">
+                            <AddData onCloseClick={handleClose}/>
+                        </div>
+                    </Modal>
                 }
 
             </div>
